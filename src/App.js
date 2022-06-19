@@ -4,11 +4,11 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-     <h1>TRABALHO FINAL WEB</h1>
+     <h1>Escolha algo abaixo para comprar</h1>
      <div className="row row-cols-1 row-cols-md-2 g-4">
   <div className="col">
     <div className="card">
-      <img src=".DesenvolvimentoWebTrabalho\trabalho-final-web\src\yummy.png" className="card-img-top" alt="..."/>
+      <img src="..." className="card-img-top" alt=""/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -17,7 +17,7 @@ function App() {
   </div>
   <div className="col">
     <div className="card">
-      <img src="..." className="card-img-top" alt="..."/>
+      <img src="..." className="card-img-top" alt=""/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -26,7 +26,7 @@ function App() {
   </div>
   <div className="col">
     <div className="card">
-      <img src="..." className="card-img-top" alt="..."/>
+      <img src="..." className="card-img-top" alt=""/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
@@ -35,7 +35,7 @@ function App() {
   </div>
   <div className="col">
     <div className="card">
-      <img src="..." className="card-img-top" alt="..."/>
+      <img src="..." className="card-img-top" alt=""/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
