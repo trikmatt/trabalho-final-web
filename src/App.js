@@ -1,24 +1,66 @@
 import './App.css';
-import React from 'react';
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import React, { useEffect, useState } from 'react';
+import useAxiosGet from './hooks/useAxiosGet';
+import api from './services/api';
+import Card from './components/Card/card';
+import axios from 'axios';
+import useAxiosPost from './hooks/useAxiosPost';
+import Header from './components/Header/header';
+
 
 function App() {
+  const [produtos, setProdutos] = useState([])
+
+  const {dados: getProdutos} = useAxiosGet('/produtos')
+    console.log(getProdutos)
+
+  const {dados: getClientes} = useAxiosGet('/clientes')
+  
+  const {dados: postPedido} = useAxiosPost('/pedidos/item/1')
+
+  const [cliente, setCliente] = useState(null)
+
+  const [carrinho, setCarrinho] = useState([])
+
+  const verificarCliente = (nome) => {
+    const cliente = getClientes.filter(cliente => cliente.nome === nome)
+    if(cliente.length !== 0) {
+      setCliente(cliente[0])
+    }
+  }
+  useEffect(()=> {
+    console.log(cliente)
+  },[cliente])
+
+
+  const adicionarAoCarrinho = (id) => { 
+    const produto = produtos.filter(produto=>produto.idProduto === id)
+    setCarrinho([...carrinho, produto[0]])
+  }
+
+  useEffect(()=>{
+    if(carrinho.length === 0) return
+    console.log(carrinho)
+  },[carrinho])
+
+
+
+  useEffect(()=>{
+    if(!getProdutos) return
+    setProdutos(getProdutos)
+
+  },[getProdutos])
+
   return (
+    <>
+      <Header logarCliente={verificarCliente} clienteLogado={cliente} />
     <div className="App">
-     <h1>TRABALHO FINAL WEB</h1>
-     <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="holder.js/100px180" />
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
-    <Button variant="primary">Go somewhere</Button>
-  </Card.Body>
-</Card>
+     <h1>Escolha algo abaixo para comprar</h1>
+     <div className="row row-cols-1 row-cols-md-2 g-4">
+     {produtos.map((produto)=><Card key={produto.idProduto} produto={produto} adicionar={adicionarAoCarrinho}/>)}
+      </div>
     </div>
+      </>
   );
 }
 
