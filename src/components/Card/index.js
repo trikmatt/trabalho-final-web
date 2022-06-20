@@ -1,6 +1,6 @@
 import { BsCartPlusFill } from 'react-icons/bs'
 
-const Card = ({ produto }) =>{
+const Card = ({ produto, adicionar }) =>{
     return(
         <div className="col">
           <div className="card">
@@ -8,7 +8,7 @@ const Card = ({ produto }) =>{
             <div className="card-body">
               <h5 className="card-title">{produto.nomeProduto}</h5>
               <p className="card-text">Valor unitário: {produto.valorUnitario}</p>
-              <button type='button'>Comprar!<BsCartPlusFill/></button>
+              <button type='button' onClick={()=>adicionar(produto.idProduto)}>Comprar!<BsCartPlusFill/></button>
             </div>
           </div>
         </div>
