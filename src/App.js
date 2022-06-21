@@ -25,8 +25,10 @@ function App() {
   const [pedidoInit, setPedidoInit] = useState()
 
   useEffect(()=> {
+    console.log(cliente)
     const postPedido = async (cliente) => {
       const {data} = await api.post('/pedidos', {idCliente: cliente.id})
+      console.log(data)
       setPedidoInit(data)
     }
     postPedido(cliente)
@@ -34,22 +36,22 @@ function App() {
   },[cliente])
 
   // useEffect(()=> {
-  //   const postApi = (idPedido, idProduto) => {
-
+  //   const postApi = async(idPedido, idProduto) => {
+  //     const {data} = await api.post(`/pedidos/${idPedido}`)
   //   }
 
-  //   const postItemCarrinho()
+  //   const postApi()
 
     
   // },[pedidoInit])
 
 
-  const adicionarCliente = (nome) => {
+  const logarCliente = (nome) => {
     const clienteFilter = getClientes.filter(cliente => cliente.nome === nome)
     if(clienteFilter.length !== 0) {
       setCliente(clienteFilter[0])
     } else {
-      return
+      return 
     }
   }
   const adicionarAoCarrinho = (id) => {
@@ -72,7 +74,7 @@ function App() {
 
   return (
     <>
-      <Header logarCliente={adicionarCliente} clienteLogado={cliente} />
+      <Header logarCliente={logarCliente} clienteLogado={cliente} carrinho={carrinho} />
         <div className="App">
           <h1>Escolha algo abaixo para comprar</h1>
           <div className="row row-cols-1 row-cols-md-2 g-4">

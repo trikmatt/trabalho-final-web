@@ -8,7 +8,15 @@ import Button from 'react-bootstrap/Button';
 
 const Header = ({logarCliente, clienteLogado}) => {
 
-    const [username, setUsername] = useState(null)
+    const [username, setUsername] = useState()
+
+    const [input, setInput] = useState(null)
+
+    useEffect(()=>{
+      if(!!clienteLogado) {
+        setUsername(clienteLogado.nome)
+      }
+    },[clienteLogado])
   
     return(
       <Navbar bg="light" expand="lg">
@@ -18,10 +26,10 @@ const Header = ({logarCliente, clienteLogado}) => {
             style={{ maxHeight: '100px' }}
             navbarScroll>
                
-               <DropdownButton id="dropdown-basic-button" title="Login" variant="success">
-                  <input onChange={e =>setUsername(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
-                  <Button variant="primary" onClick={()=> {!!username && logarCliente(username)}}>Logar</Button>{' '}
-                </DropdownButton>
+               <DropdownButton id="dropdown-basic-button" title={!!username ? username : 'Login'} variant="success">
+                  <input onChange={e =>setInput(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
+                  <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{' '}
+              </DropdownButton>
 
 
           </Nav>
