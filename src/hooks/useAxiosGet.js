@@ -8,7 +8,7 @@ const useAxiosGet = (endpoint) => {
         const fetchData = async () => {
             const {data} = await api.get(endpoint)
             setDados(data)
-            // console.log(data)
+            console.log(data)
         }
         fetchData()
     },[endpoint])
