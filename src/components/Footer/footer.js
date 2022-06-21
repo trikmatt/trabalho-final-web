@@ -6,7 +6,7 @@ return(
       <div className="text-center p-4 ">
         © 2020 Copyright: 
         <a className="navbar-brand m-2" href="#">
-        <img src="u.png" alt="USEFUL - O seu guia nas suas compras!" height="50px"/>
+        <img src="./img/u.png" alt="USEFUL - O seu guia nas suas compras!" height="50px"/>
         </a>
       </div>
     </footer>

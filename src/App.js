@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import useAxiosGet from './hooks/useAxiosGet';
 import api from './services/api';
-import Card from './components/Card';
+import Card from './components/Card/card';
 import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
 import Header from './components/Header/header';
