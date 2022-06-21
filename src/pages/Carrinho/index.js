@@ -18,8 +18,14 @@ const Carrinho = () => {
 
 
     useEffect(()=> {
-        const postApi = async(idPedido, idProduto) => {
+        const postApiAdicionar = async(idPedido, idProduto) => {
             const {data} = await api.post(`/pedidos/item/${idPedido}`, {idProduto: idProduto, quantidadeProduto: 1, valorDesconto: 0})
+            
+            console.log(data)
+           
+        }
+        const postApiFinalizar = async(idPedido) => {
+            const {data} = await api.post(`/pedidos/${idPedido}`, {codigoPagamento: 1})
             
             console.log(data)
            
@@ -27,8 +33,11 @@ const Carrinho = () => {
 
         if(!!carrinho && !!pedido){
             console.log(carrinho,pedido)
-            carrinho.forEach(produto=>postApi(pedido.idPedido, produto.idProduto))
+            carrinho.forEach(produto=>postApiAdicionar(pedido.idPedido, produto.idProduto))
+            const pedidoFinalizado = postApiFinalizar(pedido.idPedido)
+            console.log(pedidoFinalizado)
         }
+
     
   },[comprar])
 
