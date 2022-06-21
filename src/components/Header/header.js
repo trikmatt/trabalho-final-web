@@ -5,8 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom"
 
-const Header = ({logarCliente, clienteLogado}) => {
+const Header = ({logarCliente, clienteLogado, carrinho}) => {
 
     const [username, setUsername] = useState()
 
@@ -30,9 +31,8 @@ const Header = ({logarCliente, clienteLogado}) => {
                   <input onChange={e =>setInput(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
                   <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{' '}
               </DropdownButton>
-
-
           </Nav>
+              <Link to={'/carrinho'} state={carrinho}><a class="btn btn-primary" href="#" role="button">Link</a></Link>
           <Navbar.Brand href="home">
           Useful 
         <img src= "./img/u.png" alt="" width="70" height="70" className="d-inline-block align-text-center me-2"/>
