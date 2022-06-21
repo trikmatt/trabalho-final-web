@@ -12,7 +12,6 @@ function App() {
   const [produtos, setProdutos] = useState([])
 
   const {dados: getProdutos} = useAxiosGet('/produtos')
-    console.log(getProdutos)
 
   const {dados: getClientes} = useAxiosGet('/clientes')
   
