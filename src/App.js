@@ -5,35 +5,58 @@ import api from './services/api';
 import Card from './components/Card/card';
 import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
+<<<<<<< HEAD
 
+=======
+import Header from './components/Header/header';
+import Footer from './components/Footer/footer';
+>>>>>>> afca975aec21d1f49d12d6712ed8f0e358b840f4
 
 
 function App() {
   const [produtos, setProdutos] = useState([])
 
   const {dados: getProdutos} = useAxiosGet('/produtos')
-    console.log(getProdutos)
 
   const {dados: getClientes} = useAxiosGet('/clientes')
   
-  const {dados: postPedido} = useAxiosPost('/pedidos/item/1')
-
   const [cliente, setCliente] = useState(null)
 
   const [carrinho, setCarrinho] = useState([])
 
-  const verificarCliente = (nome) => {
-    const cliente = getClientes.filter(cliente => cliente.nome === nome)
-    if(cliente.length !== 0) {
-      setCliente(cliente[0])
-    }
-  }
+  // const {dados: resPedidoPost} = useAxiosPost('/pedidos', {idCliente: cliente.id})
+
+  const [pedidoInit, setPedidoInit] = useState()
+
   useEffect(()=> {
-    console.log(cliente)
+    const postPedido = async (cliente) => {
+      const {data} = await api.post('/pedidos', {idCliente: cliente.id})
+      setPedidoInit(data)
+    }
+    postPedido(cliente)
+
   },[cliente])
 
+  // useEffect(()=> {
+  //   const postApi = (idPedido, idProduto) => {
 
-  const adicionarAoCarrinho = (id) => { 
+  //   }
+
+  //   const postItemCarrinho()
+
+    
+  // },[pedidoInit])
+
+
+  const adicionarCliente = (nome) => {
+    const clienteFilter = getClientes.filter(cliente => cliente.nome === nome)
+    if(clienteFilter.length !== 0) {
+      setCliente(clienteFilter[0])
+    } else {
+      return
+    }
+  }
+  const adicionarAoCarrinho = (id) => {
     const produto = produtos.filter(produto=>produto.idProduto === id)
     setCarrinho([...carrinho, produto[0]])
   }
@@ -47,6 +70,7 @@ function App() {
   useEffect(()=>{
     if(!getProdutos) return
     setProdutos(getProdutos)
+    console.log(produtos)
 
   },[getProdutos])
 
