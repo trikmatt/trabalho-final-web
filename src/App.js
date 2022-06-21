@@ -7,6 +7,7 @@ import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
 import Header from './components/Header/header';
 import Footer from './components/Footer/footer';
+import Router from './Routes';
 
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
 
   return (
     <>
-      <Header logarCliente={logarCliente} clienteLogado={cliente} carrinho={carrinho} />
+      <Header logarCliente={logarCliente} clienteLogado={cliente} carrinho={carrinho} pedido={pedidoInit} />
         <div className="App">
           <h1>Escolha algo abaixo para comprar</h1>
           <div className="row row-cols-1 row-cols-md-2 g-4">

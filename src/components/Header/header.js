@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom"
 
-const Header = ({logarCliente, clienteLogado, carrinho}) => {
+const Header = ({logarCliente, clienteLogado, carrinho, pedido}) => {
 
     const [username, setUsername] = useState()
 
@@ -32,7 +32,7 @@ const Header = ({logarCliente, clienteLogado, carrinho}) => {
                   <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{' '}
               </DropdownButton>
           </Nav>
-              <Link to={'/carrinho'} state={carrinho}><a class="btn btn-primary" href="#" role="button">Link</a></Link>
+              <Link to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-primary" href="#" role="button">Carrinho</a></Link>
           <Navbar.Brand href="home">
           Useful 
         <img src= "./img/u.png" alt="" width="70" height="70" className="d-inline-block align-text-center me-2"/>
