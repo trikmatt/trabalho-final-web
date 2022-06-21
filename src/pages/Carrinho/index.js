@@ -14,11 +14,15 @@ const Carrinho = () => {
 
     const [carrinho, setCarrinho] = useState()
 
+    const [compras, setCompras] = useState([])
+
 
     useEffect(()=> {
         const postApi = async(idPedido, idProduto) => {
             const {data} = await api.post(`/pedidos/item/${idPedido}`, {idProduto: idProduto, quantidadeProduto: 1, valorDesconto: 0})
+            
             console.log(data)
+           
         }
 
         if(!!carrinho && !!pedido){
@@ -39,7 +43,7 @@ const Carrinho = () => {
 
     return (
         <>
-        <Header clienteLogado={pedido.cliente.nome}/>
+        <Header/>
             <ul class="list-group">
                 {location && location[0].map((produto, index) => <li class="list-group-item" key={index}>{produto.nomeProduto}<br/> Valor: R${produto.valorUnitario}
                     </li>)}
