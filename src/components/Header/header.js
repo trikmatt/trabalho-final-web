@@ -12,16 +12,16 @@ const Header = ({logarCliente, clienteLogado}) => {
           Useful
         </a>
       
-      <div class="dropdown show">
-        <button class="btn btn-secondary dropdown-toggle" onClick={()=> setDropdown(!dropdown)} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <div className="dropdown">
+        <button className="btn btn-secondary dropdown-toggle" onClick={()=> setDropdown(!dropdown)} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           {clienteLogado !== null ? clienteLogado.nome : 'Login'}
         </button>
         {dropdown &&
-        <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
+        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div className="input-group mb-2">
+            <div className="input-group-prepend">
             </div>
-            <input onChange={e =>logarCliente(e.target.value)}type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
+            <input onChange={e =>logarCliente(e.target.value)}type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
           </div>
         </div>}
       </div>
