@@ -5,12 +5,6 @@ import api from './services/api';
 import Card from './components/Card/card';
 import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
-<<<<<<< HEAD
-
-=======
-import Header from './components/Header/header';
-import Footer from './components/Footer/footer';
->>>>>>> afca975aec21d1f49d12d6712ed8f0e358b840f4
 
 
 function App() {
