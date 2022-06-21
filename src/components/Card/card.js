@@ -8,7 +8,7 @@ const Card = ({ produto, adicionar }) =>{
           <div className="card ">
             <img src='./img/Colher.png' className="card-img-top1" alt="colher"/>
             <div className="card">
-              <h5 className="card-title">{produto.nomeProduto}</h5>
+              <h4 className="card-title">{produto.nomeProduto}</h4>
               <p className="card-text">Valor unitário: {produto.valorUnitario}</p>
               <button type='btn btn-sm btn-outline-danger ms-2' onClick={()=>adicionar(produto.idProduto)}>
               <div className='d-flex1'>

@@ -5,7 +5,7 @@ import api from './services/api';
 import Card from './components/Card/card';
 import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
-import Header from './components/Header/header';
+
 
 
 function App() {
@@ -44,23 +44,24 @@ function App() {
   },[carrinho])
 
 
-
   useEffect(()=>{
     if(!getProdutos) return
     setProdutos(getProdutos)
 
   },[getProdutos])
 
-  return (
-    <>
-      <Header logarCliente={verificarCliente} clienteLogado={cliente} />
+  return (   
+      
     <div className="App">
-     <h1>Escolha algo abaixo para comprar</h1>
-     <div className="row row-cols-1 row-cols-md-2 g-4">
+      <div className='Titulo'>
+        <h1>Escolha um de nossos produtos</h1>
+        <h2>Adicione ao seu carrinho</h2>
+      </div >        
+     <div className="row row-cols-md-2" id='pv'>
      {produtos.map((produto)=><Card key={produto.idProduto} produto={produto} adicionar={adicionarAoCarrinho}/>)}
-      </div>
+        </div>      
     </div>
-      </>
+     
   );
 }
 
