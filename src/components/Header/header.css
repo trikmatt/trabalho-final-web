@@ -6,3 +6,8 @@
     font-family: 'Urbanist', sans-serif;
     vertical-align: middle;
 }
+
+.dropdown-menu {
+    right: 0;
+
+}
