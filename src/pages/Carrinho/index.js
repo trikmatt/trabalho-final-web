@@ -22,10 +22,12 @@ const Carrinho = () => {
             const {data} = await api.post(`/pedidos/item/${idPedido}`, {idProduto: idProduto, quantidadeProduto: 1, valorDesconto: 0})
             
             console.log(data)
-           
+            if(!!data){
+                postApiFinalizar(idPedido)
+            }           
         }
         const postApiFinalizar = async(idPedido) => {
-            const {data} = await api.post(`/pedidos/${idPedido}`, {codigoPagamento: 1})
+            const {data} = await api.put(`/pedidos/${idPedido}`, {codigoPagamento: 1})
             
             console.log(data)
            
@@ -34,8 +36,6 @@ const Carrinho = () => {
         if(!!carrinho && !!pedido){
             console.log(carrinho,pedido)
             carrinho.forEach(produto=>postApiAdicionar(pedido.idPedido, produto.idProduto))
-            const pedidoFinalizado = postApiFinalizar(pedido.idPedido)
-            console.log(pedidoFinalizado)
         }
 
     

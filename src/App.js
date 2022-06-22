@@ -13,11 +13,17 @@ import Router from './Routes';
 function App() {
   const [produtos, setProdutos] = useState([])
 
-  const {dados: getProdutos} = useAxiosGet('/produtos')
+  
+
+  // const {dados: getProdutos} = useAxiosGet('/produtos')
 
   const {dados: getClientes} = useAxiosGet('/clientes')
+
+  const {dados: getCategorias} = useAxiosGet('/categorias')
   
   const [cliente, setCliente] = useState(null)
+
+  const [categorias, setCategorias] = useState()
 
   const [carrinho, setCarrinho] = useState([])
 
@@ -46,6 +52,12 @@ function App() {
     
   // },[pedidoInit])
 
+  const pegarProdutosPorCategoria = async (idCategoria) => {
+      const {data} = await api.get(`/categorias/${idCategoria}/produtos`)
+      setProdutos(data)
+      console.log(data)
+  }
+
 
   const logarCliente = (nome) => {
     const clienteFilter = getClientes.filter(cliente => cliente.nome === nome)
@@ -66,18 +78,31 @@ function App() {
   },[carrinho])
 
 
-  useEffect(()=>{
-    if(!getProdutos) return
-    setProdutos(getProdutos)
-    console.log(produtos)
+  // useEffect(()=>{
+  //   if(!getProdutos) return
+  //   setProdutos(getProdutos)
+  //   console.log(produtos)
 
-  },[getProdutos])
+  // },[getProdutos])
+
+  useEffect(()=> {
+    if(!getCategorias) return
+    setCategorias(getCategorias)
+    console.log(categorias)
+  },[getCategorias])
 
   return (
     <>
       <Header logarCliente={logarCliente} clienteLogado={cliente} carrinho={carrinho} pedido={pedidoInit} />
         <div className="App">
           <h1>Escolha algo abaixo para comprar</h1>
+          <ul>
+            <li><button type="button" onClick={()=>pegarProdutosPorCategoria(1)} class="btn btn-primary">{categorias && categorias[0].categoria}</button></li>
+            <br />
+            <li><button type="button" onClick={()=>pegarProdutosPorCategoria(2)} class="btn btn-success">{categorias && categorias[1].categoria}</button></li>
+            <br />
+            <li><button type="button" onClick={()=>pegarProdutosPorCategoria(3)} class="btn btn-warning">{categorias && categorias[2].categoria}</button></li>
+          </ul>
           <div className="row row-cols-1 row-cols-md-2 g-4">
             {produtos.map(produto=> 
               <Card key={produto.idProduto} produto={produto} adicionar={adicionarAoCarrinho} cliente={cliente}></Card>
