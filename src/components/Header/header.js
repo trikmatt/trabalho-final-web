@@ -5,10 +5,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Button, Form } from 'react-bootstrap';
+import { useNavigate , Link  } from 'react-router-dom'
 
 const Header = ({ logarCliente, clienteLogado }) => {
 
+  
   const [username, setUsername] = useState(null)
+  const navigate = useNavigate();
+  
+  const handleCLick = (event) =>{ 
+    event.preventDefault();
+    console.log("click")
+    navigate('/login')
+
+  }
+  
 
   return (
     <Navbar bg="light" expand="lg">
@@ -17,9 +28,9 @@ const Header = ({ logarCliente, clienteLogado }) => {
           className="me-auto my-2 my-lg-0"
           style={{ maxHeight: '100px' }}
           navbarScroll>
-          <Button id="dropdown-basic-button" title="Login" variant="success">
-            Login
-          </Button>
+            <Button id="dropdown-basic-button" title="Login" variant="success"  onClick={handleCLick}>
+                Login 
+            </Button >{''}
           <Form className="d-flex">
             <Form.Control
               type="search"
