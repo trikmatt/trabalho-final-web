@@ -29,10 +29,10 @@ const Header = ({logarCliente, clienteLogado, carrinho, pedido}) => {
                
                <DropdownButton id="dropdown-basic-button" title={!!username ? username : 'Login'} variant="success">
                   <input onChange={e =>setInput(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
-                  <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{' '}
+                  <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{''}
               </DropdownButton>
+              <Link to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-secondary" href="#" role="button">Carrinho</a></Link>
           </Nav>
-              <Link to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-primary" href="#" role="button">Carrinho</a></Link>
           <Navbar.Brand href="home">
           Useful 
         <img src= "./img/u.png" alt="" width="70" height="70" className="d-inline-block align-text-center me-2"/>
