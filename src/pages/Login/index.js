@@ -49,6 +49,7 @@ const Login = () => {
             onChange={(e) => setSenha(e.target.value)}
           />
         </Form.Group>
+        <br/>
         <Button block="true" size="lg" type="submit" disabled={!validar()}>
           Login
         </Button>
