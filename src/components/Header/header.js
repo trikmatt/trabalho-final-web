@@ -6,19 +6,32 @@ import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate , Link  } from 'react-router-dom'
+import { render } from '@testing-library/react';
 
 const Header = ({ logarCliente, clienteLogado }) => {
 
   
   const [username, setUsername] = useState(null)
   const navigate = useNavigate();
-  
+  const [ativo , setAtivo] = useState()
+
   const handleCLick = (event) =>{ 
-    event.preventDefault();
     console.log("click")
+    setAtivo(true)
     navigate('/login')
 
   }
+
+  const handleLogut = () =>{
+    localStorage.setItem('logado' , false)
+    setAtivo(false)
+  }
+
+  useEffect(() => {
+    console.log("teste")
+    localStorage.setItem('logado' , false)
+
+  }, [])
   
 
   return (
@@ -28,9 +41,15 @@ const Header = ({ logarCliente, clienteLogado }) => {
           className="me-auto my-2 my-lg-0"
           style={{ maxHeight: '100px' }}
           navbarScroll>
-            <Button id="dropdown-basic-button" title="Login" variant="success"  onClick={handleCLick}>
-                Login 
-            </Button >{''}
+            {!ativo? 
+              <Button id="dropdown-basic-button" title="Login" variant="success"  onClick={handleCLick}>
+                  login
+              </Button > 
+            :
+              <Button id="dropdown-basic-button" title="Login" variant="danger"  onClick={handleLogut}>
+                  logout
+              </Button >
+            }
           <Form className="d-flex">
             <Form.Control
               type="search"
