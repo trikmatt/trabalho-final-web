@@ -19,7 +19,8 @@ const Header = ({logarCliente, clienteLogado}) => {
             navbarScroll>
                
                <DropdownButton id="dropdown-basic-button" title="Login" variant="success">
-                  <input onChange={e =>setUsername(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
+                  <input onChange={e =>logarCliente(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
+                  <input onChange={e =>logarCliente(e.target.value)}type="password" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1"/>
                   <Button variant="primary" onClick={()=> {!!username && logarCliente(username)}}>Logar</Button>{' '}
                 </DropdownButton>
 
