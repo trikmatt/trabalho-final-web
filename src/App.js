@@ -10,10 +10,10 @@ import useAxiosPost from './hooks/useAxiosPost';
 function App() {
   const [produtos, setProdutos] = useState([])
 
-  const {dados: getProdutos} = useAxiosGet('/produtos')
+  const { dados: getProdutos } = useAxiosGet('/produtos')
 
-  const {dados: getClientes} = useAxiosGet('/clientes')
-  
+  const { dados: getClientes } = useAxiosGet('/clientes')
+
   const [cliente, setCliente] = useState(null)
 
   const [carrinho, setCarrinho] = useState([])
@@ -22,14 +22,14 @@ function App() {
 
   const [pedidoInit, setPedidoInit] = useState()
 
-  useEffect(()=> {
+  useEffect(() => {
     const postPedido = async (cliente) => {
-      const {data} = await api.post('/pedidos', {idCliente: cliente.id})
+      const { data } = await api.post('/pedidos', { idCliente: cliente.id })
       setPedidoInit(data)
     }
     postPedido(cliente)
 
-  },[cliente])
+  }, [cliente])
 
   // useEffect(()=> {
   //   const postApi = (idPedido, idProduto) => {
@@ -38,48 +38,47 @@ function App() {
 
   //   const postItemCarrinho()
 
-    
+
   // },[pedidoInit])
 
 
   const adicionarCliente = (nome) => {
     const clienteFilter = getClientes.filter(cliente => cliente.nome === nome)
-    if(clienteFilter.length !== 0) {
+    if (clienteFilter.length !== 0) {
       setCliente(clienteFilter[0])
     } else {
       return
     }
   }
   const adicionarAoCarrinho = (id) => {
-    const produto = produtos.filter(produto=>produto.idProduto === id)
+    const produto = produtos.filter(produto => produto.idProduto === id)
     setCarrinho([...carrinho, produto[0]])
   }
 
-  useEffect(()=>{
-    if(carrinho.length === 0) return
+  useEffect(() => {
+    if (carrinho.length === 0) return
     console.log(carrinho)
-  },[carrinho])
+  }, [carrinho])
 
 
-  useEffect(()=>{
-    if(!getProdutos) return
+  useEffect(() => {
+    if (!getProdutos) return
     setProdutos(getProdutos)
     console.log(produtos)
 
-  },[getProdutos])
+  }, [getProdutos])
 
-  return (   
-      
+  return (
+
     <div className="App">
       <div className='Titulo'>
         <h1>Escolha um de nossos produtos</h1>
-        <h2>Adicione ao seu carrinho</h2>
-      </div >        
-     <div className="row row-cols-md-2" id='pv'>
-     {produtos.map((produto)=><Card key={produto.idProduto} produto={produto} adicionar={adicionarAoCarrinho}/>)}
-        </div>      
+      </div >
+      <div className="row row-cols-md-2" id='pv'>
+        {produtos.map((produto) => <Card key={produto.idProduto} produto={produto} adicionar={adicionarAoCarrinho} />)}
+      </div>
     </div>
-     
+
   );
 }
 
