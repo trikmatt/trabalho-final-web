@@ -4,8 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Button from 'react-bootstrap/Button';
+import {Button, Dropdown} from 'react-bootstrap';
 import { Link } from "react-router-dom"
+
 
 const Header = ({logarCliente, clienteLogado, carrinho, pedido}) => {
 
@@ -25,17 +26,18 @@ const Header = ({logarCliente, clienteLogado, carrinho, pedido}) => {
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
-            navbarScroll>
-               
+            navbarScroll>               
                <DropdownButton id="dropdown-basic-button" title={!!username ? username : 'Login'} variant="success">
+                  
+                  <input onChange={e =>setInput(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
                   <input onChange={e =>setInput(e.target.value)}type="text" placeholder="Usuário" aria-label="User" aria-describedby="basic-addon1"/>
                   <Button variant="primary" onClick={()=> {!!input && logarCliente(input)}}>Logar</Button>{''}
               </DropdownButton>
-              <Link to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-secondary" href="#" role="button">Carrinho</a></Link>
+              <Link className='ms-2' to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-secondary" href="#" role="button">Carrinho</a></Link>
           </Nav>
           <Navbar.Brand href="home">
           Useful 
-        <img src= "./img/u.png" alt="" width="70" height="70" className="d-inline-block align-text-center me-2"/>
+        <img src= "./img/u.png" alt="" width="70" height="70" className="d-inline-block align-text-center m-2"/>
         </Navbar.Brand>
       </Container>
     </Navbar>
