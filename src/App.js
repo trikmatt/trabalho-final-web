@@ -7,6 +7,7 @@ import axios from 'axios';
 import useAxiosPost from './hooks/useAxiosPost';
 import Header from './components/Header/header';
 import Footer from './components/Footer/footer';
+import Router from './Routes';
 
 
 function App() {
@@ -34,22 +35,22 @@ function App() {
   }, [cliente])
 
   // useEffect(()=> {
-  //   const postApi = (idPedido, idProduto) => {
-
+  //   const postApi = async(idPedido, idProduto) => {
+  //     const {data} = await api.post(`/pedidos/${idPedido}`)
   //   }
 
-  //   const postItemCarrinho()
+  //   const postApi()
 
 
   // },[pedidoInit])
 
 
-  const adicionarCliente = (nome) => {
+  const logarCliente = (nome) => {
     const clienteFilter = getClientes.filter(cliente => cliente.nome === nome)
     if (clienteFilter.length !== 0) {
       setCliente(clienteFilter[0])
     } else {
-      return
+      return 
     }
   }
   const adicionarAoCarrinho = (id) => {

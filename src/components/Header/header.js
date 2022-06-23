@@ -8,7 +8,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate , Link  } from 'react-router-dom'
 import { render } from '@testing-library/react';
 
-const Header = ({ logarCliente, clienteLogado }) => {
+const Header = ({ logarCliente, clienteLogado, carrinho, pedido }) => {
 
   
   const [username, setUsername] = useState(null)
@@ -50,6 +50,7 @@ const Header = ({ logarCliente, clienteLogado }) => {
                   logout
               </Button >
             }
+            <Link to={'/carrinho'} state={[carrinho, pedido]}><a class="btn btn-primary m-2" href="#" role="button">Carrinho</a></Link>
           <Form className="d-flex">
             <Form.Control
               type="search"
